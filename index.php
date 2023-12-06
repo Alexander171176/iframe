@@ -7,26 +7,31 @@ $category = isset($_GET['category']) ? $_GET['category'] : 'HTML';
 try {
     $conn = new Database\Connection("localhost", "root", "", "iframe");
 
-    $sql = "SELECT links.link_name, links.title, pages.page_name, categories.category_name
-            FROM links
-            INNER JOIN pages ON links.page_id = pages.id
-            INNER JOIN categories ON links.category_id = categories.id
-            WHERE categories.category_name = ?";
+    // Получаем id категории
+    $sql_category_id = "SELECT id FROM categories WHERE category_name = ?";
+    $stmt_category_id = $conn->prepare($sql_category_id);
 
-
-    $stmt = $conn->prepare($sql);
-
-    if (!$stmt) {
+    if ($stmt_category_id === false) {
         die("Error during prepare: " . $conn->error);
     }
 
-    $stmt->bind_param("s", $category);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt_category_id->bind_param("s", $category);
+    $stmt_category_id->execute();
+    $stmt_category_id->bind_result($category_id);
+    $stmt_category_id->fetch();
+    $stmt_category_id->close();
 
-    if (!$result) {
-        die("Error during query execution: " . $stmt->error);
+    // Получаем все метки (labels) для данной категории
+    $sql_labels = "SELECT id, name FROM category_labels WHERE category_id = ?";
+    $stmt_labels = $conn->prepare($sql_labels);
+
+    if ($stmt_labels === false) {
+        die("Error during prepare: " . $conn->error);
     }
+
+    $stmt_labels->bind_param("i", $category_id);
+    $stmt_labels->execute();
+    $result_labels = $stmt_labels->get_result();
 
     include 'header.php';
     ?>
@@ -37,12 +42,40 @@ try {
     <div class="col-12 col-sm-6 col-md-6 col-lg-4">
         <!-- Ссылки -->
         <?php
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo '<a href="#" data-title="' . $row['title'] . '" class="btn btn-primary mb-2" onclick="loadIFrame(\'loadPage.php?page=' . $row['page_name'] . '&category=' . $category . '\', \'' . $row['title'] . '\')">' . $row['link_name'] . '</a>';
+        while ($label = $result_labels->fetch_assoc()) {
+            echo '<ul>' . $label['name'];
+
+            // Получаем все ссылки для данной метки
+            $sql_links = "SELECT link_name, title, page_id FROM links WHERE label_id = ?";
+            $stmt_links = $conn->prepare($sql_links);
+
+            if ($stmt_links === false) {
+                die("Error during prepare: " . $conn->error);
             }
-        } else {
-            echo "No links found";
+
+            $stmt_links->bind_param("i", $label['id']);
+            $stmt_links->execute();
+            $result_links = $stmt_links->get_result();
+
+            while ($link = $result_links->fetch_assoc()) {
+                // Получаем page_name по page_id
+                $sql_page_name = "SELECT page_name FROM pages WHERE id = ?";
+                $stmt_page_name = $conn->prepare($sql_page_name);
+
+                if ($stmt_page_name === false) {
+                    die("Error during prepare: " . $conn->error);
+                }
+
+                $stmt_page_name->bind_param("i", $link['page_id']);
+                $stmt_page_name->execute();
+                $stmt_page_name->bind_result($page_name);
+                $stmt_page_name->fetch();
+                $stmt_page_name->close();
+
+                echo '<li><a href="#" data-title="' . $link['title'] . '" class="btn btn-primary mb-2" onclick="loadIFrame(\'loadPage.php?page=' . $page_name . '&category=' . $category . '\', \'' . $link['title'] . '\')">' . $link['link_name'] . '</a></li>';
+            }
+
+            echo '</ul>';
         }
         ?>
     </div>
@@ -57,7 +90,7 @@ try {
     <?php
     include 'footer.php';
 
-    $stmt->close();
+    $stmt_labels->close();
     $conn->close();
 } catch (\Exception $e) {
     echo "Error: " . $e->getMessage();
