@@ -1,8 +1,13 @@
 ﻿<?php
-include(__DIR__ . '/database/db_connection.php');
+require_once __DIR__ . '/vendor/autoload.php'; // Подключаем autoload.php от Composer
+
+use Database\Connection;
+
+// Получаем экземпляр подключения
+$conn = Connection::getInstance();
 
 // Замените 'HTML' на необходимую категорию
-$category = isset($_GET['category']) ? $_GET['category'] : 'HTML';
+$category = isset($_GET['category']) ? mysqli_real_escape_string($conn, $_GET['category']) : 'HTML';
 
 try {
     $conn = new Database\Connection("localhost", "root", "", "iframe");

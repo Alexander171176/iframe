@@ -1,7 +1,14 @@
 ﻿<?php
-include(__DIR__ . '/database/db_connection.php');
+require_once __DIR__ . '/vendor/autoload.php'; // Подключаем autoload.php от Composer
 
-$linkId = isset($_GET['link_id']) ? $_GET['link_id'] : null;
+use Database\Connection;
+
+// Получаем экземпляр подключения
+$conn = Connection::getInstance();
+
+$pageName = isset($_GET['page']) ? mysqli_real_escape_string($conn, $_GET['page']) : 'default';
+$category = isset($_GET['category']) ? mysqli_real_escape_string($conn, $_GET['category']) : 'HTML';
+$linkId = isset($_GET['link_id']) ? mysqli_real_escape_string($conn, $_GET['link_id']) : null;
 
 if ($linkId !== null) {
     // Получаем page_id из таблицы links
