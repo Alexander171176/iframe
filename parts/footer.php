@@ -12,11 +12,11 @@
 <!-- Ваши скрипты -->
 <script>
     function loadIFrame(page) {
-        console.log('Loading page:', page);
+        //console.log('Loading page:', page);
         fetch(page)
             .then(response => response.text())
             .then(data => {
-                console.log('Data received:', data);
+                //console.log('Data received:', data);
                 const contentContainer = document.getElementById('contentContainer');
                 contentContainer.innerHTML = data;
                 document.getElementById('myIframe').src = page;

@@ -29,7 +29,7 @@ try {
     $stmt_category_id->close();
 
     // Получаем все метки (labels) для данной категории
-    $sql_labels = "SELECT id, name FROM category_labels WHERE category_id = ?";
+    $sql_labels = "SELECT id, name, checked FROM category_labels WHERE category_id = ?";
     $stmt_labels = $conn->prepare($sql_labels);
 
     if ($stmt_labels === false) {
@@ -40,7 +40,7 @@ try {
     $stmt_labels->execute();
     $result_labels = $stmt_labels->get_result();
 
-    include 'header.php';
+    include 'parts/header.php';
     ?>
     <div class="cl col-12 col-sm-6 col-md-6 col-lg-4">
         <!-- Контент в iframe -->
@@ -53,7 +53,7 @@ try {
             if (mysqli_num_rows($result_labels) > 0) {
                 while ($label = $result_labels->fetch_assoc()) {
                     echo '<div class="ac-div">';
-                    echo '<input id="ac-' . $label['id'] . '" name="accordion-' . $label['id'] . '" type="checkbox" />';
+                    echo '<input id="ac-' . $label['id'] . '" name="accordion-' . $label['id'] . '" type="checkbox" ' . ($label['checked'] ? 'checked' : '') . ' />';
                     echo '<label for="ac-' . $label['id'] . '">' . $label['name'] . '</label>';
 
                     // Получаем все ссылки для данной метки
@@ -107,7 +107,7 @@ try {
                 }
             } else {
                 // Сообщение, если нет меток
-                echo '<p>No labels found.</p>';
+                echo '<p class="note">No labels found.</p>';
             }
             ?>
         </section><!--/контейнер аккордеона-->
@@ -119,7 +119,7 @@ try {
     <div id="contentContainer" class="mt-4"></div>
 
     <?php
-    include 'footer.php';
+    include 'parts/footer.php';
 
     $stmt_labels->close();
     $conn->close();

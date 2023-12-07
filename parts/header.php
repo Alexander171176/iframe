@@ -3,12 +3,16 @@
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="AUTHOR" content="Alexander Kosolapov">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
 
     <!-- Подключение стилей Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
 
+    <!-- App CSS -->
     <link rel="stylesheet" href="/css/style.css">
 
     <!--Кодировка страницы-->
@@ -82,6 +86,7 @@
                         echo '<a class="col nav-link ' . $isActive . '" href="?category=' . $cat . '">' . $cat . '</a>';
                     }
                     ?>
+                    <a class="col nav-link" href="https://www.web-dev.kz/">Мой сайт</a>
                 </div>
             </div>
         </div>
