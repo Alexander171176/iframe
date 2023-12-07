@@ -1,12 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $category; ?></title>
+
     <!-- Подключение стилей Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.11/dist/css/uikit.min.css" />
+
     <link rel="stylesheet" href="/css/style.css">
+
+    <!--Кодировка страницы-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--/Кодировка страницы-->
+
+    <!--Базовые метатеги страницы-->
+    <title>Приложение для frontend разработки | <?php echo $category; ?></title>
+    <meta name="keywords" content="Приложение для frontend разработки" />
+    <meta name="description" content="Приложение для frontend разработки" />
+    <!--/Базовые метатеги страницы-->
+
+    <!--Микроразметка OpenGraph-->
+    <meta property="og:title" content="Приложение для frontend разработки"/>
+    <meta property="og:description" content="Приложение для frontend разработки"/>
+    <meta property="og:image" content="https://www.web-dev.kz/uploads/logon.png">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "https://www.it.web-dev.kz/" />
+    <meta property="og:site_name" content= "IT" />
+    <!--/Микроразметка OpenGraph-->
+    <meta property="og:image:width" content="100"/>
+    <meta property="og:image:height" content= "100" />
+
+    <!--Микроразметка Dublin Core-->
+    <meta name="DC.Title" content="Приложение для frontend разработки"/>
+    <meta name="DC.Subject" content="Приложение для frontend разработки"/>
+    <meta name="DC.Description" content="Приложение для frontend разработки"/>
+    <meta name="DC.Type" content="InteractiveResource"/>
+    <!--/Микроразметка Dublin Core-->
+
 </head>
 <body>
 
@@ -57,13 +89,13 @@
 </header>
 <div class="container pt-5">
     <div class="row" style="height: 40px;">
-        <div class="col-1 p-2">
+        <div class="col-1 pt-2 uk-flex uk-flex-right">
             <a class="rek-link" target="_blank" title="позвонить или написать на whatsapp" href="https://wa.me/77015522280">
                 <img class="rek-img" src="/img/whatsapp.png" alt="Responsive image">
             </a>
         </div>
         <div class="col-11">
-            <marquee class="rek" width="100%" height="30px" behavior="scroll" direction="left">Данное веб-приложение как есть, вы можете его купить всего за 2 доллара, перевести деньги вы сможете по карте. Подробности вы можете узнать написав мне на whatsapp.</marquee>
+            <marquee class="rek" width="100%" height="30px" behavior="scroll" direction="left">Разработка сайтов и веб-приложений. Подробности вы можете узнать написав мне на whatsapp.</marquee>
         </div>
     </div>
 </div>
