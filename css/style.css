@@ -37,3 +37,105 @@ header nav .active {
     color: orange;
     font-weight: bold;
 }
+section {
+    display: block;
+}
+.ac-container {
+    border: 1px solid #999;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3px;
+    text-align: left;
+    width: 100%;
+}
+.ac-div {
+    box-shadow: 1px 1px 1px 1px rgba(255, 255, 255, 1) inset, 1px 1px 1px 2px rgba(204, 204, 204, .8), 2px 2px 1px 2px rgba(255, 255, 255, .7);
+    margin: 3px;
+    width: 49%;
+}
+.ac-container input {
+    display: none;
+}
+.ac-container input:checked + label, .ac-container input:checked + label:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #0ff), color-stop(100%, #fff));
+    color: #f33;
+}
+.ac-container label {
+    background: #6cc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .9), 0 2px 2px rgba(153, 153, 153, .7);
+    border-radius: 30px 10px;
+    color: #036;
+    cursor: pointer;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin: 3px 0 5px;
+    padding: 0 10px;
+    text-shadow: 0 2px 2px rgba(255, 255, 255, 0.9);
+    width: 100%;
+}
+.ac-container article { /*артикль закладки*/
+    background: rgba(255, 255, 255, 0.5); /*фон закладки*/
+    height: 0; /*закладки изначально не видны*/
+    margin-top: -1px; /*отступ верх, невидно границ*/
+    overflow: hidden; /*выступающее не видно*/
+    position: relative; /*позиционирование варьируется*/
+    transition: height 0.3s ease-in-out; /*анимация выдвижения*/
+}
+.ac-container input:checked ~ article { /*анимация выдвижения закладки*/
+    transition: height 0.3s ease-in-out;
+}
+.ac-container input:checked ~ article.ac-large { /*большой параграф*/
+    height: fit-content;
+    margin-bottom: 3px; /*отступ верх, невидно границ*/
+    z-index: auto; /*видимый слой*/
+}
+.article-ul {
+    margin: 0;
+    padding: 0;
+}
+.article-li {
+    outline: 2px outset #CCC;
+    margin: 3px;
+    text-align: center;
+}
+.article-li:hover {
+    background: #F8F8FF;
+    outline-color: #FF0;
+}
+.article-li a {
+    color: #666;
+    display: block;
+    font: bold 1.1em/1.5 Trebuchet MS, Tahoma;
+    text-decoration: none;
+    width: 100%;
+}
+.article-li:hover a {
+    color: #F90;
+}
+.note {
+    color: #FF0099;
+    margin: 0;
+    padding: 0 10px;
+    text-align: center;
+}
+.article-li:hover a::after { /*свойства блока контекста ссылки при наведении*/
+    background: rgba(53, 53, 53, .8); /*Полупрозрачный цвет фона*/
+    border: 1px solid #f60; /*толщина рамки цвет*/
+    border-radius: 10px; /*радиус закругления углов*/
+    box-shadow: 1px 1px 1px 1px rgba(255, 255, 204, 1) inset, 1px 1px 2px 1px rgba(0, 0, 0, .9), 1px 1px 1px 2px rgba(204, 204, 204, .8), 2px 2px 1px 2px rgba(255, 255, 255, .7);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(255, 255, 204, 1) inset, 1px 1px 1px 1px rgba(0, 0, 0, .9), 1px 1px 1px 2px rgba(204, 204, 204, .8), 2px 2px 2px 2px rgba(255, 255, 255, .7);
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(255, 255, 204, 1) inset, 1px 1px 1px 1px rgba(0, 0, 0, .9), 1px 1px 1px 2px rgba(204, 204, 204, .8), 2px 2px 2px 2px rgba(255, 255, 255, .7);
+    color: #fff; /*цвет текста*/
+    content: attr(data-title); /*Выводим текст*/
+    font: normal 1.4em/1.2 Trebuchet MS, Tahoma; /*Гарнитура шрифта*/
+    font-size: 100%;
+    left: 1%; /*Положение слева*/
+    letter-spacing: 1px;
+    top: 24%; /*Положение от верха*/
+    padding: 10px; /*Внутренний отступ*/
+    position: fixed; /*Абсолютное позиционирование*/
+    width: 30%;
+    height: fit-content;
+    z-index: 99; /*Отображаем подсказку поверх других элементов*/
+}

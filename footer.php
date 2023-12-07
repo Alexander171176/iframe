@@ -8,19 +8,17 @@
 <!-- Ваши скрипты -->
 <script>
     function loadIFrame(page) {
+        console.log('Loading page:', page);
         fetch(page)
-            .then(response => response.text())  // Здесь изменение
+            .then(response => response.text())
             .then(data => {
-                // Вывод HTML-разметки в контейнер
+                console.log('Data received:', data);
                 const contentContainer = document.getElementById('contentContainer');
                 contentContainer.innerHTML = data;
-
-                // Установка источника iframe
                 document.getElementById('myIframe').src = page;
             })
             .catch(error => console.error('Error:', error));
     }
-
 </script>
 </body>
 </html>

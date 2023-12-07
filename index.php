@@ -39,49 +39,73 @@ try {
         <!-- Контент в iframe -->
         <iframe id="myIframe" width="100%" height="640" frameborder="0" src="loadPage.php?page=default"></iframe>
     </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-        <!-- Ссылки -->
-        <?php
-        while ($label = $result_labels->fetch_assoc()) {
-            echo '<ul>' . $label['name'];
+    <div class="col-12 col-sm-6 col-md-6 col-lg-8">
+        <section class="ac-container"><!--контейнер аккордеона-->
+            <?php
+            // Проверка наличия меток
+            if (mysqli_num_rows($result_labels) > 0) {
+                while ($label = $result_labels->fetch_assoc()) {
+                    echo '<div class="ac-div">';
+                    echo '<input id="ac-' . $label['id'] . '" name="accordion-' . $label['id'] . '" type="checkbox" />';
+                    echo '<label for="ac-' . $label['id'] . '">' . $label['name'] . '</label>';
 
-            // Получаем все ссылки для данной метки
-            $sql_links = "SELECT link_name, title, page_id FROM links WHERE label_id = ?";
-            $stmt_links = $conn->prepare($sql_links);
+                    // Получаем все ссылки для данной метки
+                    $sql_links = "SELECT id, link_name, title, page_id FROM links WHERE label_id = ?";
 
-            if ($stmt_links === false) {
-                die("Error during prepare: " . $conn->error);
-            }
+                    $stmt_links = $conn->prepare($sql_links);
 
-            $stmt_links->bind_param("i", $label['id']);
-            $stmt_links->execute();
-            $result_links = $stmt_links->get_result();
+                    if ($stmt_links === false) {
+                        die("Error during prepare: " . $conn->error);
+                    }
 
-            while ($link = $result_links->fetch_assoc()) {
-                // Получаем page_name по page_id
-                $sql_page_name = "SELECT page_name FROM pages WHERE id = ?";
-                $stmt_page_name = $conn->prepare($sql_page_name);
+                    $stmt_links->bind_param("i", $label['id']);
+                    $stmt_links->execute();
+                    $result_links = $stmt_links->get_result();
 
-                if ($stmt_page_name === false) {
-                    die("Error during prepare: " . $conn->error);
+                    // Проверка наличия ссылок
+                    if (mysqli_num_rows($result_links) > 0) {
+                        echo '<article class="ac-large">';
+                        echo '<ul class="article-ul">';
+
+                        while ($link = $result_links->fetch_assoc()) {
+                            // Получаем page_name по page_id
+                            $sql_page_name = "SELECT page_name FROM pages WHERE id = ?";
+                            $stmt_page_name = $conn->prepare($sql_page_name);
+
+                            if ($stmt_page_name === false) {
+                                die("Error during prepare: " . $conn->error);
+                            }
+
+                            $stmt_page_name->bind_param("i", $link['page_id']);
+                            $stmt_page_name->execute();
+                            $stmt_page_name->bind_result($page_name);
+                            $stmt_page_name->fetch();
+                            $stmt_page_name->close();
+
+                            echo '<li class="article-li">';
+                            echo '<a href="#" data-title="' . $link['title'] . '" class="" onclick="loadIFrame(\'loadPage.php?page=' . $page_name . '&category=' . $category . '&link_id=' . $link['id'] . '\', \'' . $link['title'] . '\')">' . $link['link_name'] . '</a>';
+                            echo ' </li>';
+                        }
+
+                        echo '</ul>';
+                        echo '</article>';
+                    } else {
+                        // Сообщение, если нет ссылок
+                        echo '<article class="ac-large">';
+                        echo '<p class="note">No links found for this label.</p>';
+                        echo '</article>';
+                    }
+
+                    echo '</div>';
                 }
-
-                $stmt_page_name->bind_param("i", $link['page_id']);
-                $stmt_page_name->execute();
-                $stmt_page_name->bind_result($page_name);
-                $stmt_page_name->fetch();
-                $stmt_page_name->close();
-
-                echo '<li><a href="#" data-title="' . $link['title'] . '" class="btn btn-primary mb-2" onclick="loadIFrame(\'loadPage.php?page=' . $page_name . '&category=' . $category . '\', \'' . $link['title'] . '\')">' . $link['link_name'] . '</a></li>';
+            } else {
+                // Сообщение, если нет меток
+                echo '<p>No labels found.</p>';
             }
-
-            echo '</ul>';
-        }
-        ?>
+            ?>
+        </section><!--/контейнер аккордеона-->
     </div>
-    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
 
-    </div>
     </div>
 
     <!-- Контейнер для вывода данных в разметку Bootstrap -->
