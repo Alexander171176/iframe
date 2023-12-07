@@ -14,7 +14,8 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/top-panel.css"/><!--подключение стилей-->
+    <link rel="stylesheet" type="text/css" href="/css/top-panel.css"/><!--подключение стилей верхней панели-->
+    <link rel="stylesheet" type="text/css" href="/css/right-panel.css"/><!--подключение стилей правой панели-->
 
     <!--Кодировка страницы-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

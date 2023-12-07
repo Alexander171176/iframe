@@ -1,0 +1,73 @@
+#label-right-panel {/*внешняя вкладка*/
+    background:#f66;/*цвет фона*/
+    border-radius:5px 0 0 5px;
+    -webkit-border-radius:5px 0 0 5px; /* закругление границ для всех браузеров*/
+    -moz-border-radius:5px 0 0 5px;
+    color:#fff;/*цвет текста*/
+    cursor:pointer;/*курсор указатель*/
+    font:normal 1em/1.2em "Courier New";/*размер и тип шрифта*/
+    height:65px;/*высота блока*/
+    padding:3px;/*отступы от границ внутри блока*/
+    position:fixed;/*положение фиксированное*/
+    right:0;/*отступ справа*/
+    text-align:center;/*выравнивание текста по центру*/
+    top:50px;/*отступ сверху*/
+    transition-duration:0.3s;
+    -webkit-transition-duration: 0.3s;/*анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration:0.3s;
+    width:25px;/*ширина блока*/
+    z-index:11;/*видимость слоя*/
+}
+#hidden-right-panel{/*скрытая панель*/
+    background:rgba(255,255,255,1);/*цвет фона*/
+    border:2px solid #fff;
+    border-radius:5px 0 0 5px;
+    -webkit-border-radius:5px 0 0 5px;/* закругление границ для всех браузеров*/
+    -moz-border-radius:5px 0 0 5px;
+    color:#333;/*цвет текста*/
+    height:94%;/*высота блока*/
+    overflow-y:scroll;
+    padding:10px;/*отступы от границ внутри блока*/
+    position:fixed;/* положение */
+    right:-500px;/* отступ слева */
+    text-align:left;/*выравнивание текста*/
+    top:50px;/* отступ сверху */
+    -webkit-transition-duration: 0.3s;/*анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    width:500px;/*ширина блока*/
+}
+#label-right-panel:hover{/*изначальное положение правой панели*/
+    right:500px;
+}
+#label-right-panel:hover #hidden-right-panel {/*при наведении на ярлык выдвигается правая панель*/
+    right:0; /* отступ справа */
+}
+.html-color{/*таблица правой панели*/
+    border:1px dashed #333;
+}
+.row-color{/*ряд таблицы правой панели*/
+    border:1px dotted #333;
+    padding:10px 0;
+}
+.p1,.p2,.p3{/*параграфы таблицы правой панели*/
+    font:bold 1em/1.2em Courier New, serif;
+}
+.p1{/*параграфы таблицы правой панели*/
+    cursor:pointer;
+    line-height: 2;
+    padding: 0;
+    margin: 0
+}
+.p2,.p3{/*параграфы таблицы правой панели*/
+    cursor:text;
+    line-height: 2;
+    padding: 0;
+    margin: 0
+}
+.dark{
+    color:#333;
+}
+.light{
+    color:#fff;
+}
