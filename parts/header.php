@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/top-panel.css"/><!--подключение стилей верхней панели-->
     <link rel="stylesheet" type="text/css" href="/css/right-panel.css"/><!--подключение стилей правой панели-->
+    <link rel="stylesheet" type="text/css" href="/css/video-panel.css"/><!--подключение стилей видео панели-->
 
     <!--Кодировка страницы-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -107,6 +108,10 @@
         </div>
     </div>
 </div>
-
+<?php
+include 'parts/top-panel.php';
+include 'parts/right-panel.php';
+include 'parts/video-panel.php';
+?>
 <div class="container-fluid mt-2">
-    <div class="row justify-content-end">
+    <div class="row">

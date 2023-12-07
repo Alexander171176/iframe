@@ -1,8 +1,6 @@
 <input class="open" id="top-box" type="checkbox" hidden>
 <label class="btn" for="top-box">RGB</label>
 
-<?php include 'parts/right-panel.php'; ?>
-
 <div id="particles-js" class="top-panel">
 
     <div class="option-color">

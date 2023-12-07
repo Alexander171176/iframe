@@ -41,8 +41,8 @@ try {
     $result_labels = $stmt_labels->get_result();
 
     include 'parts/header.php';
-    include 'parts/top-panel.php';
     ?>
+
     <div class="cl col-12 col-sm-6 col-md-6 col-lg-4">
         <!-- Контент в iframe -->
         <iframe id="myIframe" width="100%" height="640" frameborder="0" src="loadPage.php?page=default"></iframe>

@@ -1,0 +1,77 @@
+/*.cn { !*Переключатель правой панели*!*/
+/*    float: right; !*примыкание справа*!*/
+/*    position: relative; !*позиционирование варьируется*!*/
+/*    width: 2%; !*длина блока*!*/
+/*}*/
+
+label.but { /*Переключатель правой панели*/
+    background: #f93; /*цвет фона*/
+    border-radius: 5px 0 0 5px; /*закругление границ*/
+    -moz-border-radius: 5px 0 0 5px; /*закругление границ для всех браузеров*/
+    -webkit-border-radius: 5px 0 0 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3), 0 2px 8px 0 rgba(0, 0, 0, .2);
+    color: #fff; /*цвет текста*/
+    cursor: pointer; /*курсор указатель*/
+    display: block; /*блочный элемент*/
+    font: 20px "Trebuchet MS", "Arial Narrow"; /*размер и тип шрифта*/
+    padding: 2px 5px; /*отступы от границ внутри блока*/
+    position: fixed; /*положение фиксированное*/
+    right: 0; /*отступ справа*/
+    text-align: center; /*выравнивание текста по центру*/
+    top: 50px; /*отступ сверху*/
+    -webkit-transition-duration: 0.5s; /*анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-font-smoothing: antialiased; /*среднее сглаживание шрифта*/
+    width: 60px; /*ширина блока*/
+    z-index: 114; /*видимость слоя*/
+}
+
+label.but:hover { /*Переключатель при наведении*/
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .2), 0 6px 15px 0 rgba(0, 0, 0, .2);
+}
+
+.right-panel { /*правая панель*/
+    background-color: rgba(204, 204, 204, .8); /*фон*/
+    color: #333; /*цвет текста*/
+    height: 90%; /*высота блока*/
+    overflow: scroll; /*Добавляем полосы прокрутки*/
+    padding: 10px; /*отступы от границ внутри блока*/
+    position: fixed; /*положение фиксированное*/
+    right: -2400px; /*отступ слева*/
+    text-align: left; /*выравнивание текста*/
+    top: 52px; /*отступ сверху*/
+    -webkit-transition-duration: 0.5s; /*анимационное выдвижение для всех браузеров*/
+    -moz-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    width: 67%; /*ширина блока*/
+    z-index: 113; /*видимость слоя*/
+}
+
+.open:checked ~ .right-panel { /*Активация панели*/
+    right: 0;
+}
+
+.open:checked ~ label.but {
+    background: #c06;
+    right: 67%; /*отступ справа*/
+}
+
+.c { /*панель видео*/
+    background-color: rgba(255, 255, 255, 1); /*прозрачность фона*/
+    border: 1px solid #000; /*толщина рамки цвет*/
+    cursor: pointer;
+    font: normal 1em Arial Narrow, Helvetica; /*жирность размер шрифт текста*/
+    float: left; /*примыкание слева*/
+    letter-spacing: 1px; /*расстояние между символами*/
+    margin: 2px; /*внешние отступы*/
+    padding: 2px; /*внутренние отступы букв*/
+    position: relative; /*позиционирование варьируется*/
+    width: 100%; /*длина блока*/
+    z-index: 112; /*видимость слоя*/
+}
+
+summary:hover { /*строки названий видео*/
+    background-color: rgba(51, 255, 153, 1); /*прозрачность фона*/
+    color: #f39;
+}
