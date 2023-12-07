@@ -14,6 +14,7 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/top-panel.css"/><!--подключение стилей-->
 
     <!--Кодировка страницы-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -92,6 +93,7 @@
         </div>
     </nav>
 </header>
+
 <div class="container pt-5">
     <div class="row" style="height: 40px;">
         <div class="col-1 pt-2 uk-flex uk-flex-right">

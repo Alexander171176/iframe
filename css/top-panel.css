@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+#particles-js{
+    background:radial-gradient(#F8F8FF, #000808);
+    background:-moz-radial-gradient(#F8F8FF, #000808);
+    background:-o-radial-gradient(#F8F8FF, #000808);
+    background:-ms-radial-gradient(#F8F8FF, #000808);
+    background:-webkit-radial-gradient(#F8F8FF, #000808);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+label.btn {/*Переключатель верхней панели*/
+    background:#f93;/*цвет фона*/
+    border-radius:0 0 5px 5px;/*закругление границ*/
+    -moz-border-radius:0 0 5px 5px;/*закругление границ для всех браузеров*/
+    -webkit-border-radius:0 0 5px 5px;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,.3),0 2px 8px 0 rgba(0,0,0,.2);
+    color:#fff;/*цвет текста*/
+    cursor:pointer;/*курсор указатель*/
+    display:block;/*блочный элемент*/
+    font:normal 1em/.9em "Trebuchet MS", "Arial Narrow";/*размер и тип шрифта*/
+    padding:0 0 3px 0;/*отступы от границ внутри блока*/
+    position:fixed;/*положение фиксированное*/
+    right:25px;/*отступ справа*/
+    text-align:center;/*выравнивание текста по центру*/
+    top:1px;/*отступ сверху*/
+    -webkit-font-smoothing:antialiased;/*среднее сглаживание шрифта*/
+    width:40px;/*ширина блока*/
+    z-index:112;/*видимость слоя*/
+}
+label.btn:hover {/*блок лейбла при наведении*/
+    box-shadow:0 5px 10px 0 rgba(0,0,0,.2),0 6px 15px 0 rgba(0,0,0,.2);
+}
+.open:checked ~ label.btn {/*положение блока лейбла при активации инпута выдвижной панели*/
+    right:27px;/*отступ справа*/
+}
+.open:checked ~ .top-panel {/*Активация панели*/
+    top:50px;
+}
+.open:checked + label.btn {/*Цвет переключателя при клике*/
+    background:#c06;
+}
+.top-panel {/*Базовый контейнер выдвижной панели*/
+    border:2px solid #fff;
+    position:absolute;/*положение абсолютное*/
+    top:-1410px;/*подожение сверху*/
+    left:0;/*подожение слева*/
+    right:0;/*подожение справа*/
+    width:100%;/*ширина блока*/
+    height:auto;/*высота блока*/
+    padding:0;
+    box-shadow:0 2px 4px 0 rgba(0,0,0,.3),0 2px 8px 0 rgba(0,0,0,.2);
+    transition-timing-function:ease;
+    z-index:2;/*видимость слоя*/
+}
+.top-panel img{/*картинка png безопасные цвета*/
+    position:absolute;
+    z-index:3;/*видимость слоя*/
+}
+@media (max-width: 1280px) {
+    #particles-js, label.btn {display: none;}
+}
+.option-color{/*верхний параграф опций*/
+    z-index:4;/*видимость слоя*/
+}
+form.option-form{/*форма инпутов кодов HEX и RGB*/
+    border:1px solid #CCC;
+    background:rgba(255,255,255,.9);
+    height:36px;
+    width:100%;
+    padding:5px;
+    z-index:5;/*видимость слоя*/
+}
+form > span{/*наименование инпутов*/
+    color:#666;
+    font:1em/1em impact;
+    text-transform:uppercase;
+}
+form > input {/*инпуты формы*/
+    border:1px solid #999;
+    border-radius:3px;
+    -webkit-border-radius:3px;/*радиус закругленных углов для хрома*/
+    -moz-border-radius:3px;/*радиус закругленных углов для мозилы*/
+    font:normal 16px arial,verdana,helvetica,geneva,sans-serif;
+    margin-left:20px;
+    padding-left:5px;
+    position:relative;
+    text-transform:uppercase;
+    width:100px;
+    z-index:6;
+}
+.input-range{
+    float:right;
+}
