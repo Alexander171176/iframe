@@ -7,7 +7,9 @@ use Database\Connection;
 $conn = Connection::getInstance();
 
 // Замените 'HTML' на необходимую категорию
+$pageName = isset($_GET['page']) ? mysqli_real_escape_string($conn, $_GET['page']) : 'default';
 $category = isset($_GET['category']) ? mysqli_real_escape_string($conn, $_GET['category']) : 'HTML';
+$linkId = isset($_GET['link_id']) ? mysqli_real_escape_string($conn, $_GET['link_id']) : null;
 
 try {
     $conn = new Database\Connection("localhost", "root", "", "iframe");

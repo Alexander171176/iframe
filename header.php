@@ -68,5 +68,5 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mt-2">
     <div class="row justify-content-end">
